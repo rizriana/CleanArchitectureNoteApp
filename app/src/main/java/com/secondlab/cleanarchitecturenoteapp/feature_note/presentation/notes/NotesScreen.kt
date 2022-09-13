@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.secondlab.cleanarchitecturenoteapp.core.util.TestTags.ORDER_SECTION
 import com.secondlab.cleanarchitecturenoteapp.feature_note.presentation.notes.components.NoteItem
 import com.secondlab.cleanarchitecturenoteapp.feature_note.presentation.notes.components.OrderSection
 import com.secondlab.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
@@ -41,7 +43,7 @@ fun NotesScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add note"
+                    contentDescription = "Add"
                 )
             }
         },
@@ -80,7 +82,8 @@ fun NotesScreen(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = 16.dp)
+                        .testTag(ORDER_SECTION),
                     noteOrder = state.noteOrder,
                     onOrderChanges = {
                         viewModel.onEvent(NotesEvent.Order(it))
